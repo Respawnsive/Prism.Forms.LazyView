@@ -1,5 +1,5 @@
 # Prism.Forms.LazyView
-Lazy load Xamarin Forms views
+Lazy load Xamarin Forms views with Prism
 
 Directly inspired by @andreinitescu work discribed here https://enginecore.blogspot.com/2019/01/xamarin-forms-lazy-load-tabs-in_10.html.
 The original code has been adapted to Prism and published on Nuget.
