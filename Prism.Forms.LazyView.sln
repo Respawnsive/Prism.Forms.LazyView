@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Forms.LazyView.Sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Forms.LazyView.Sample.iOS", "Sample\Prism.Forms.LazyView.Sample.iOS\Prism.Forms.LazyView.Sample.iOS.csproj", "{C4405A97-B484-4B7D-9203-844E69CEF29F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Forms.LazyView", "Prism.Forms.LazyView\Prism.Forms.LazyView.csproj", "{0B6C0205-4ECA-4A77-9CE0-06A046992510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Forms.LazyView", "Prism.Forms.LazyView\Prism.Forms.LazyView.csproj", "{0B6C0205-4ECA-4A77-9CE0-06A046992510}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{2E9B5631-2623-407C-A9A1-57910212B90F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

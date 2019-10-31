@@ -4,7 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
-             xmlns:lazyTabs="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
+             xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
              xmlns:behaviors="clr-namespace:Prism.Forms.LazyView.Behaviors;assembly=Prism.Forms.LazyView"
              x:Class="Prism.Forms.LazyView.Sample.Views.TabHostPage"
              Title="{Binding Title}">
@@ -26,7 +26,7 @@
     <views:StandardPage/>
 
     <!--A page referenced but constructed the lazy way-->
-    <lazyTabs:LazyContentPage Title="Lazy" 
+    <lazyView:LazyContentPage Title="Lazy" 
                               x:TypeArguments="views:SlowContentView"/>
 
 </TabbedPage>
