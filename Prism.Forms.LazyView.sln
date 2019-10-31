@@ -14,6 +14,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prism.Forms.LazyView", "Prism.Forms.LazyView\Prism.Forms.LazyView.csproj", "{0B6C0205-4ECA-4A77-9CE0-06A046992510}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{2E9B5631-2623-407C-A9A1-57910212B90F}"
+	ProjectSection(SolutionItems) = preProject
+		Nuget\Prism.Forms.LazyView.nuspec = Nuget\Prism.Forms.LazyView.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
