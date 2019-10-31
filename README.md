@@ -15,9 +15,13 @@ Install the Prism.Forms.LazyView nuget package and on a TabbedPage (e.g.):
 
 * Add some lazy tabs like this one:
 
-      <lazyView:LazyContentPage Title="YOUR TAB NAME" x:TypeArguments="views:YOURCONTENTVIEW"/>
+      <lazyView:LazyContentPage Title="YOUR TAB NAME" x:TypeArguments="views:YOUR_CONTENT_VIEW"/>
       
-YOURCONTENTVIEW Forms ContentView will be created on tab click
+* Register your lazy page for navigartion
+
+      containerRegistry.RegisterForNavigation<LazyContentPage<YOUR_CONTENT_VIEW>, YOUR_CONTENT_VIEWMODEL>(nameof(YOUR_CONTENT_VIEW));
+      
+YOUR_CONTENT_VIEW should be a Xamarin.Forms ContentView and will be created once tab clicked
 Actually, it should work with any Prism control implementing MultiPageActiveAwareBehavior (e.g. Tabbed and Carousel)
 
 More details on Sample project
