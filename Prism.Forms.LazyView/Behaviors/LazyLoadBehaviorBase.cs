@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Prism.Forms.LazyView.Behaviors
@@ -10,6 +11,8 @@ namespace Prism.Forms.LazyView.Behaviors
     public abstract class LazyLoadBehaviorBase<TVisualElement> : Behavior<TVisualElement>
         where TVisualElement : VisualElement
     {
+        public DataTemplate LoadingTemplate { get; set; }
+
         public DataTemplate ContentTemplate { get; set; }
 
         protected override void OnAttachedTo(TVisualElement element)
@@ -33,7 +36,22 @@ namespace Prism.Forms.LazyView.Behaviors
             var element = (TVisualElement)sender;
             element.Behaviors.Remove(this);
 
-            SetContent(element, (View)ContentTemplate.CreateContent());
+            if (LoadingTemplate != null)
+            {
+                var loadingView = (View)LoadingTemplate.CreateContent();
+                SetContent(element, loadingView);
+
+                Task.Run(() =>
+                {
+                    var contentView = (View) ContentTemplate.CreateContent();
+                    Device.BeginInvokeOnMainThread(() => SetContent(element, contentView));
+                });
+            }
+            else
+            {
+                var contentView = (View)ContentTemplate.CreateContent();
+                SetContent(element, contentView);
+            }
         }
 
         protected abstract void SetContent(TVisualElement element, View contentView);

@@ -5,5 +5,13 @@
                         x:Class="Prism.Forms.LazyView.Sample.App">
     <Application.Resources>
 
+        <Color x:Key="ColorPrimary">#2196F3</Color>
+
+        <Style ApplyToDerivedTypes="True"
+               TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource ColorPrimary}" />
+            <Setter Property="Visual" Value="Material" />
+        </Style>
+
     </Application.Resources>
 </prism:PrismApplication>

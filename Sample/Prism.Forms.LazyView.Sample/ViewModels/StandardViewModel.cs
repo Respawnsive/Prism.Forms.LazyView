@@ -7,7 +7,7 @@ namespace Prism.Forms.LazyView.Sample.ViewModels
         public StandardViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Standard";
+            Title = "Std";
         }
     }
 }

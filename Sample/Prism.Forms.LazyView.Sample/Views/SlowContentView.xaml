@@ -1,12 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Prism.Forms.LazyView.Sample.Views.SlowContentView">
+             x:Class="Prism.Forms.LazyView.Sample.Views.SlowContentView" 
+             Margin="10">
     <Grid>
         <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
             <Label Text="{Binding Title}"
-                   HorizontalOptions="Center"
-                   VerticalOptions="CenterAndExpand" />
+                   HorizontalOptions="Center" LineBreakMode="WordWrap" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Long process on ViewModel:"/>
+                <Label Text="{Binding Counter}"
+                       HorizontalOptions="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Counter}" Value="0">
+                            <Setter Property="IsVisible" Value="False"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Text="Result!"
+                       HorizontalOptions="Center" IsVisible="False">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Counter}" Value="0">
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
             <Button Text="Navigate to Other" Command="{Binding NavigateCommand}"/>
         </StackLayout>
     </Grid>

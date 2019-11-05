@@ -1,20 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Forms.LazyView.Sample.Views;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace Prism.Forms.LazyView.Sample.ViewModels
 {
-    public class SlowContentViewModel : ViewModelBase
+    public class TopSlowContentViewModel : ViewModelBase
     {
-        private Timer _timer;
-
-        public SlowContentViewModel(INavigationService navigationService)
+        public TopSlowContentViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Default view on screen while lazy loading slow content view in background thread";
+            Title = "Block ui while lazy loading slow content view on main thread";
         }
 
         private DelegateCommand _navigateCommand;
@@ -26,39 +22,14 @@ namespace Prism.Forms.LazyView.Sample.ViewModels
             await NavigationService.NavigateAsync($"{nameof(OtherPage)}");
         }
 
-        private int _counter;
-        public int Counter
-        {
-            get => _counter;
-            set => SetProperty(ref _counter, value);
-        }
-
-        public override Task InitializeAsync(INavigationParameters parameters)
-        {
-            return base.InitializeAsync(parameters);
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
-            Counter = 10;
-            _timer = new Timer(OnTimerTick, null, 0, 1000);
-        }
-
-        private void OnTimerTick(object state)
-        {
-            if(_counter > 0)
-                Counter--;
-            else
-            {
-                _timer.Dispose();
-            }
         }
 
         public override void OnDisappearing()
         {
             base.OnDisappearing();
-            _timer?.Dispose();
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

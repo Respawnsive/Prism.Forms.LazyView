@@ -1,14 +1,18 @@
-﻿using Prism.DryIoc;
+﻿using System;
+using System.Reflection;
+using Prism.DryIoc;
 using Prism.Forms.LazyView.Sample.ViewModels;
 using Prism.Forms.LazyView.Sample.Views;
 using Prism.Ioc;
+using Prism.Mvvm;
+using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Prism.Forms.LazyView.Sample
 {
-    //[AutoRegisterForNavigation]
+    [AutoRegisterForNavigation]
     public partial class App : PrismApplication
     {
         /* 
@@ -25,16 +29,32 @@ namespace Prism.Forms.LazyView.Sample
             InitializeComponent();
 
             await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(TabHostPage)}");
-            //await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(TabHostPage)}?{KnownNavigationParameters.SelectedTab}={nameof(SlowContentView)}");
+            //await NavigationService.NavigateAsync($"{nameof(NavigationPage)}/{nameof(TabHostPage)}?{KnownNavigationParameters.SelectedTab}={nameof(TopTabHostPage)}?{KnownNavigationParameters.SelectedTab}={nameof(TopStandardPage)}");
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
+            {
+                if (string.IsNullOrWhiteSpace(viewType.FullName))
+                    return null;
+
+                var viewModelAssemblyName = typeof(ViewModelBase).GetTypeInfo().Assembly.FullName;
+                var viewModelNamespace = typeof(ViewModelBase).Namespace;
+                var viewModelTypeName = viewType.Name.Replace("View", "ViewModel").Replace("Page", "ViewModel");
+                var viewModelName = $"{viewModelNamespace}.{viewModelTypeName}, {viewModelAssemblyName}";
+                var viewModelType = Type.GetType(viewModelName);
+                return viewModelType;
+            });
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<TabHostPage, TabHostViewModel>();
-            containerRegistry.RegisterForNavigation<OtherPage, OtherViewModel>();
-            containerRegistry.RegisterForNavigation<StandardPage, StandardViewModel>();
-            containerRegistry.RegisterForNavigation<LazyContentPage<SlowContentView>, SlowContentViewModel>(nameof(SlowContentView));
+            containerRegistry.RegisterForNavigation<LazyContentPage<LoadingSlowContentView, SlowContentView>, SlowContentViewModel>(nameof(SlowContentView)); // Default view on screen while lazy loading slow content view in background thread
+            containerRegistry.RegisterForNavigation<LazyContentPage<TopSlowContentView>, TopSlowContentViewModel>(nameof(TopSlowContentView)); // Block ui while lazy loading slow content view on main thread
         }
     }
 }

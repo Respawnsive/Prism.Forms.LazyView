@@ -6,13 +6,18 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="d"
-             x:Class="Prism.Forms.LazyView.Sample.Views.OtherPage"
+             x:Class="Prism.Forms.LazyView.Sample.Views.TopStandardPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="The other page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center">
+                <Label Text="A page defined from its own ContentPage" />
+                <Button Text="Select Lazy tab" 
+                        Command="{prism:SelectTab TopSlowContentView}"/>
+                <Button Text="Navigate to Other" Command="{Binding NavigateCommand}"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

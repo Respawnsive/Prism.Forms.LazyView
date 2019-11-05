@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using Naxam.Controls.Platform.iOS;
 using Prism.Ioc;
 using UIKit;
 
@@ -20,6 +21,7 @@ namespace Prism.Forms.LazyView.Sample.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            TopTabbedRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

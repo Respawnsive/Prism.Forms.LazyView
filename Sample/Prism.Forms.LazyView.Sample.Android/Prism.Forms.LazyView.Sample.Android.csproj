@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc.Forms">
-      <Version>7.2.0.1367</Version>
+    <PackageReference Include="Naxam.TopTabbedPage.Forms">
+      <Version>0.0.3.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
@@ -95,6 +95,18 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Prism\Source\Prism\Prism.csproj">
+      <Project>{9546ec73-80eb-46fb-83c7-07ac1ab1d44d}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Prism\Source\Xamarin\Prism.DryIoc.Forms\Prism.DryIoc.Forms.csproj">
+      <Project>{0c934216-4392-4e3f-a7c1-faed35fc1957}</Project>
+      <Name>Prism.DryIoc.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Prism\Source\Xamarin\Prism.Forms\Prism.Forms.csproj">
+      <Project>{70e5c3c3-bfba-4e03-9145-140ac1d4a157}</Project>
+      <Name>Prism.Forms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Prism.Forms.LazyView.Sample\Prism.Forms.LazyView.Sample.csproj">
       <Project>{246c70b9-2f56-45dc-9312-4fc96d818c1e}</Project>
       <Name>Prism.Forms.LazyView.Sample</Name>
