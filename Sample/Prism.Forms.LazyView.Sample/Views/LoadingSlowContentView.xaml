@@ -9,7 +9,7 @@
         <Grid>
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <ActivityIndicator IsRunning="True" HorizontalOptions="Center"/>
-                <Label Text="Loading..." HorizontalOptions="Center"/>
+                <Label Text="{Binding Counter, StringFormat='Loading View and ViewModel...{0}0%'}" HorizontalOptions="Center"/>
             </StackLayout>
         </Grid>
   </ContentView.Content>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Forms.LazyView.Sample.Views;
 using Prism.Navigation;
@@ -14,7 +13,8 @@ namespace Prism.Forms.LazyView.Sample.ViewModels
         public SlowContentViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Default view on screen while lazy loading slow content view in background thread";
+            Title = "Lazy";
+            Description = "Default view on screen while lazy loading slow content view in background thread";
         }
 
         private DelegateCommand _navigateCommand;
@@ -33,22 +33,17 @@ namespace Prism.Forms.LazyView.Sample.ViewModels
             set => SetProperty(ref _counter, value);
         }
 
-        public override Task InitializeAsync(INavigationParameters parameters)
-        {
-            return base.InitializeAsync(parameters);
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
-            Counter = 10;
+            Counter = 0;
             _timer = new Timer(OnTimerTick, null, 0, 1000);
         }
 
         private void OnTimerTick(object state)
         {
-            if(_counter > 0)
-                Counter--;
+            if(_counter < 10)
+                Counter++;
             else
             {
                 _timer.Dispose();

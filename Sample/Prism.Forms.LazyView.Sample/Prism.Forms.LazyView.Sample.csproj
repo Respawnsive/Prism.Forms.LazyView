@@ -11,13 +11,11 @@
 
   <ItemGroup>
     <PackageReference Include="Naxam.TopTabbedPage.Forms" Version="0.0.3.5" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Prism\Source\Prism\Prism.csproj" />
-    <ProjectReference Include="..\..\..\Prism\Source\Xamarin\Prism.DryIoc.Forms\Prism.DryIoc.Forms.csproj" />
-    <ProjectReference Include="..\..\..\Prism\Source\Xamarin\Prism.Forms\Prism.Forms.csproj" />
     <ProjectReference Include="..\..\Prism.Forms.LazyView\Prism.Forms.LazyView.csproj" />
   </ItemGroup>
 

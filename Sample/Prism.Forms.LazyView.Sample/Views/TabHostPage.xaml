@@ -9,6 +9,7 @@
              xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
              xmlns:behaviors="clr-namespace:Prism.Forms.LazyView.Behaviors;assembly=Prism.Forms.LazyView"
              x:Class="Prism.Forms.LazyView.Sample.Views.TabHostPage"
+             xmlns:viewModels="clr-namespace:Prism.Forms.LazyView.Sample.ViewModels;assembly=Prism.Forms.LazyView.Sample"
              x:Name="This"
              Title="{Binding Title}" 
              BarBackgroundColor="LightGray">
@@ -32,7 +33,8 @@
     <views:TopTabHostPage/>
 
     <!--A page referenced but constructed the lazy way-->
-    <lazyView:LazyContentPage Title="Lazy" 
+    <lazyView:LazyContentPage Title="{Binding Title}" 
+                              x:DataType="viewModels:SlowContentViewModel"
                               x:TypeArguments="views:LoadingSlowContentView,views:SlowContentView"/>
 
 </TabbedPage>

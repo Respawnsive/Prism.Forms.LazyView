@@ -13,13 +13,20 @@ namespace Prism.Forms.LazyView.Sample.ViewModels
         IDestructible,
         IConfirmNavigationAsync
     {
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService NavigationService { get; }
 
         private string _title;
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
 
         public ViewModelBase(INavigationService navigationService)
