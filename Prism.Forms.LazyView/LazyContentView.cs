@@ -1,4 +1,5 @@
 ﻿using System;
+using Prism.AppModel;
 using Prism.Forms.LazyView.Behaviors;
 using Xamarin.Forms;
 
@@ -25,9 +26,21 @@ namespace Prism.Forms.LazyView
                 if (_isActive != value)
                 {
                     _isActive = value;
-                    IsActiveChanged?.Invoke(this, EventArgs.Empty);
+                    OnActivationChanged();
                 }
             }
+        }
+
+        private void OnActivationChanged()
+        {
+            var isActiveChanged = IsActiveChanged;
+            if(isActiveChanged != null)
+                isActiveChanged.Invoke(this, EventArgs.Empty);
+            else if(Content is ContentView contentView && contentView.BindingContext is IPageLifecycleAware bindingContext)
+                if(_isActive)
+                    bindingContext.OnAppearing();
+                else
+                    bindingContext.OnDisappearing();
         }
     }
 
@@ -53,9 +66,21 @@ namespace Prism.Forms.LazyView
                 if (_isActive != value)
                 {
                     _isActive = value;
-                    IsActiveChanged?.Invoke(this, EventArgs.Empty);
+                    OnActivationChanged();
                 }
             }
+        }
+
+        private void OnActivationChanged()
+        {
+            var isActiveChanged = IsActiveChanged;
+            if (isActiveChanged != null)
+                isActiveChanged.Invoke(this, EventArgs.Empty);
+            else if (Content is ContentView contentView && contentView.BindingContext is IPageLifecycleAware bindingContext)
+                if (_isActive)
+                    bindingContext.OnAppearing();
+                else
+                    bindingContext.OnDisappearing();
         }
     }
 }

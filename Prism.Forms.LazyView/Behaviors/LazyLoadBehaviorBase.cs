@@ -54,6 +54,6 @@ namespace Prism.Forms.LazyView.Behaviors
             }
         }
 
-        protected abstract void SetContent(TVisualElement element, View contentView);
+        protected abstract void SetContent(TVisualElement element, View view);
     }
 }

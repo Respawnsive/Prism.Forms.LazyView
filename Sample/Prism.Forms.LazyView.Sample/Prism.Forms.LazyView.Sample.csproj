@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\EncrustedSlowContentView.xaml.cs">
+      <DependentUpon>EncrustedSlowContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TabHostPage.xaml.cs">
       <DependentUpon>TabHostPage.xaml</DependentUpon>
     </Compile>
@@ -32,6 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\EncrustedSlowContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoadingSlowContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

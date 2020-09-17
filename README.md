@@ -6,7 +6,9 @@ The original code has been adapted to Prism and published on Nuget.
 
 ### How to use it?
 
-Install the Prism.Forms.LazyView nuget package and on a TabbedPage (e.g.):
+Install the Prism.Forms.LazyView nuget package: [![NuGet](https://img.shields.io/nuget/v/Prism.Forms.LazyView.svg)](https://www.nuget.org/packages/Prism.Forms.LazyView/)
+
+Then for example on a TabbedPage:
 
 * Add some references:
     
@@ -33,6 +35,8 @@ YOUR_CONTENT_VIEW should be a Xamarin.Forms ContentView and will be created once
 
 YOUR_LOADING_VIEW should be a Xamarin.Forms ContentView and will be displayed while lazy loading YOUR_CONTENT_VIEW in a background thread
 
-Actually, it should work with any Prism control implementing MultiPageActiveAwareBehavior (e.g. Tabbed and Carousel)
+Actually, it should work with any Prism control implementing MultiPageActiveAwareBehavior (e.g. Tabbed and Carousel), but you can make it work from anywhere you're able to toggle the IsActive property (see "EncrustedSlowContentView").
+
+Now toggling IsActive on view side call OnAppearing/OnDisappearing on viewmodel side.
 
 More details on Sample project

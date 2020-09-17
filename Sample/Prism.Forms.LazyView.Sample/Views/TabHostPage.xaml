@@ -1,40 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             android:TabbedPage.ToolbarPlacement="Bottom"
-             xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
-             xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
-             xmlns:behaviors="clr-namespace:Prism.Forms.LazyView.Behaviors;assembly=Prism.Forms.LazyView"
-             x:Class="Prism.Forms.LazyView.Sample.Views.TabHostPage"
-             xmlns:viewModels="clr-namespace:Prism.Forms.LazyView.Sample.ViewModels;assembly=Prism.Forms.LazyView.Sample"
-             x:Name="This"
-             Title="{Binding Title}" 
-             BarBackgroundColor="LightGray">
+<TabbedPage
+    x:Class="Prism.Forms.LazyView.Sample.Views.TabHostPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:behaviors="clr-namespace:Prism.Forms.LazyView.Behaviors;assembly=Prism.Forms.LazyView"
+    xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:viewModels="clr-namespace:Prism.Forms.LazyView.Sample.ViewModels;assembly=Prism.Forms.LazyView.Sample"
+    xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
+    x:Name="This"
+    Title="{Binding Title}"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BarBackgroundColor="LightGray">
 
-    <!--A page defined from here-->
-    <ContentPage Title="Builtin">
-        <Grid>
-            <StackLayout Orientation="Vertical"
-                         HorizontalOptions="Center" 
-                         VerticalOptions="Center">
-                <Label Text="A page defined from the TabHostPage" />
-                <Button Text="Select Lazy tab" 
-                        Command="{prism:SelectTab SlowContentView}"/>
-            </StackLayout>
-        </Grid>
-    </ContentPage>
+    <!--  A normal page referenced  -->
+    <views:StandardPage />
 
-    <!--A normal page referenced-->
-    <!--<views:StandardPage/>-->
+    <views:TopTabHostPage />
 
-    <views:TopTabHostPage/>
-
-    <!--A page referenced but constructed the lazy way-->
-    <lazyView:LazyContentPage Title="{Binding Title}" 
-                              x:DataType="viewModels:SlowContentViewModel"
-                              x:TypeArguments="views:LoadingSlowContentView,views:SlowContentView"/>
+    <!--  A page referenced but constructed the lazy way  -->
+    <lazyView:LazyContentPage
+        Title="{Binding Title}"
+        x:DataType="viewModels:SlowContentViewModel"
+        x:TypeArguments="views:LoadingSlowContentView,views:SlowContentView" />
 
 </TabbedPage>

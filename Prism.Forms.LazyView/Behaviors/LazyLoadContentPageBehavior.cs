@@ -4,9 +4,9 @@ namespace Prism.Forms.LazyView.Behaviors
 {
     public class LazyLoadContentPageBehavior : LazyLoadBehaviorBase<ContentPage>
     {
-        protected override void SetContent(ContentPage page, View contentView)
+        protected override void SetContent(ContentPage contentPage, View view)
         {
-            page.Content = contentView;
+            contentPage.Content = view;
         }
     }
 }

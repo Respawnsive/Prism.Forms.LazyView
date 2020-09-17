@@ -1,34 +1,54 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Prism.Forms.LazyView.Sample.ViewModels;assembly=Prism.Forms.LazyView.Sample"
-             x:Class="Prism.Forms.LazyView.Sample.Views.SlowContentView" 
-             Margin="10"
-             x:DataType="viewModels:SlowContentViewModel">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Prism.Forms.LazyView.Sample.Views.SlowContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
+    xmlns:viewModels="clr-namespace:Prism.Forms.LazyView.Sample.ViewModels;assembly=Prism.Forms.LazyView.Sample"
+    xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
+    Margin="10"
+    x:DataType="viewModels:SlowContentViewModel">
     <Grid>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="{Binding Description}"
-                   HorizontalOptions="Center" LineBreakMode="WordWrap" />
+        <StackLayout
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center">
+            <Label
+                HorizontalOptions="Center"
+                LineBreakMode="WordWrap"
+                Text="{Binding Description}" />
             <StackLayout Orientation="Horizontal">
-                <Label Text="Long process on ViewModel:"/>
-                <Label Text="{Binding Counter, StringFormat='{0}0%'}"
-                       HorizontalOptions="Center">
+                <Label Text="Long process on ViewModel:" />
+                <Label HorizontalOptions="Center" Text="{Binding Counter, StringFormat='{0}0%'}">
                     <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding Counter}" Value="0">
-                            <Setter Property="IsVisible" Value="False"/>
+                        <DataTrigger
+                            Binding="{Binding Counter}"
+                            TargetType="Label"
+                            Value="0">
+                            <Setter Property="IsVisible" Value="False" />
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Label Text="Result!"
-                       HorizontalOptions="Center" IsVisible="False">
+                <Label
+                    HorizontalOptions="Center"
+                    IsVisible="False"
+                    Text="Result!">
                     <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding Counter}" Value="0">
-                            <Setter Property="IsVisible" Value="True"/>
+                        <DataTrigger
+                            Binding="{Binding Counter}"
+                            TargetType="Label"
+                            Value="0">
+                            <Setter Property="IsVisible" Value="True" />
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
             </StackLayout>
-            <Button Text="Navigate to Other" Command="{Binding NavigateCommand}"/>
+            <Button Command="{Binding NavigateCommand}" Text="Navigate to Other" />
+            <Button Clicked="Button_OnClicked" Text="Toggle incrusted view" />
+            <lazyView:LazyContentView
+                x:Name="LazyContentView"
+                x:DataType="viewModels:EncrustedSlowContentViewModel"
+                x:TypeArguments="views:LoadingSlowContentView,views:EncrustedSlowContentView" />
         </StackLayout>
     </Grid>
 </ContentView>

@@ -1,16 +1,17 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Prism.Forms.LazyView.Sample.Views.LoadingSlowContentView">
-  <ContentView.Content>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Prism.Forms.LazyView.Sample.Views.LoadingSlowContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentView.Content>
         <Grid>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                <ActivityIndicator IsRunning="True" HorizontalOptions="Center"/>
-                <Label Text="{Binding Counter, StringFormat='Loading View and ViewModel...{0}0%'}" HorizontalOptions="Center"/>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+                <Label HorizontalOptions="Center" Text="{Binding Counter, StringFormat='Loading View and ViewModel...{0}0%'}" />
             </StackLayout>
         </Grid>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>

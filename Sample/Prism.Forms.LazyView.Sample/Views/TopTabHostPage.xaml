@@ -1,35 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<naxam:TopTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:naxam="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.TopTabbedPage.Forms"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
-             xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
-             mc:Ignorable="d"
-             x:Class="Prism.Forms.LazyView.Sample.Views.TopTabHostPage"
-             Title="{Binding Title}">
+<naxam:TopTabbedPage
+    x:Class="Prism.Forms.LazyView.Sample.Views.TopTabHostPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:lazyView="clr-namespace:Prism.Forms.LazyView;assembly=Prism.Forms.LazyView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:naxam="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.TopTabbedPage.Forms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:views="clr-namespace:Prism.Forms.LazyView.Sample.Views;assembly=Prism.Forms.LazyView.Sample"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    mc:Ignorable="d">
 
-    <!--A page defined from here-->
-    <ContentPage Title="Builtin">
-        <Grid>
-            <StackLayout Orientation="Vertical"
-                         HorizontalOptions="Center" 
-                         VerticalOptions="Center">
-                <Label Text="A page defined from the TabHostPage" />
-                <Button Text="Select Lazy tab" 
-                        Command="{prism:SelectTab TopSlowContentView}"/>
-            </StackLayout>
-        </Grid>
-    </ContentPage>
+    <!--  A normal page referenced  -->
+    <views:TopStandardPage />
 
-    <!--A normal page referenced-->
-    <views:TopStandardPage/>
-
-    <!--A page referenced but constructed the lazy way-->
-    <lazyView:LazyContentPage Title="Lazy" 
-                              x:TypeArguments="views:TopSlowContentView"/>
+    <!--  A page referenced but constructed the lazy way  -->
+    <lazyView:LazyContentPage Title="Lazy" x:TypeArguments="views:TopSlowContentView" />
 
 </naxam:TopTabbedPage>

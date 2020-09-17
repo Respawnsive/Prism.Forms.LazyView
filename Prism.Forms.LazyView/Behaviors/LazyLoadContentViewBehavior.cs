@@ -1,12 +1,14 @@
-﻿using Xamarin.Forms;
+﻿using Prism.AppModel;
+using Xamarin.Forms;
 
 namespace Prism.Forms.LazyView.Behaviors
 {
     public class LazyLoadContentViewBehavior : LazyLoadBehaviorBase<ContentView>
     {
-        protected override void SetContent(ContentView element, View contentView)
+        protected override void SetContent(ContentView contentView, View view)
         {
-            element.Content = contentView;
+            ((view as ContentView)?.BindingContext as IPageLifecycleAware)?.OnAppearing();
+            contentView.Content = view;
         }
     }
 }
